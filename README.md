@@ -31,7 +31,7 @@ gcloud container clusters create home
 gcloud container clusters get-credentials home
 gcloud container builds submit --tag gcr.io/blinky-196302/c2-image
 kubectl run c2-server --image=gcr.io/blinky-196302/c2-image --port=8080
-kubectl expose deployment c2-server --type="LoadBalancer" --target-port="80" --port="80"
+kubectl expose deployment c2-server --type="LoadBalancer" --target-port="8080" --port="80"
 kubectl get service c2-server
 ```
 
