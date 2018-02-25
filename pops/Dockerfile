@@ -11,8 +11,8 @@ ENV PATH /env/bin:$PATH
 
 # Copy the application's requirements.txt and run pip to install all
 # dependencies into the virtualenv.
-# ADD requirements.txt ./requirements.txt
-# RUN pip install -r ./requirements.txt
+ADD requirements.txt ./requirements.txt
+RUN pip install -r ./requirements.txt
 
 # Add the application source code.
 ADD pop.py ./pop.py

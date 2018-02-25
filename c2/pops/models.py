@@ -22,4 +22,4 @@ class Process(models.Model):
     last_seen = models.DateTimeField(default=datetime.datetime.now)
 
     def __str__(self):
-        return str(self.id)
+        return '{} ({})'.format(str(self.id), self.POP)

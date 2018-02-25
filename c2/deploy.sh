@@ -1,14 +1,10 @@
 #!/bin/bash
 
-POPS=(
-    "us-west1-a"
-)
-
 set -e
 
 function usage()
 {
-    echo "Script used for pushing new code out to all POPs."
+    echo "Script used for pushing new code out."
     echo ""
     echo "./deploy.sh"
     echo "\t-h --help"
@@ -36,12 +32,5 @@ while [ "$1" != "" ]; do
     shift
 done
 
-gcloud container builds submit --tag gcr.io/blinky-196302/pop-image:v$version
-for POP in ${POPS[@]}; do
-    echo "Updating $POP to v$VERSION"
-    CLUSTER_NAME="pop-$POP"
-    K8S_CLUSTER_NAME="gke_blinky-196302_"$POP"_$CLUSTER_NAME"
-
-    kubectl  --cluster=$K8S_CLUSTER_NAME set image deployment/pop-process pop-process=gcr.io/blinky-196302/pop-image:v$VERSION
-
-done
+gcloud container builds submit --tag gcr.io/blinky-196302/c2-image:v$VERSION
+kubectl --cluster=gke_blinky-196302_us-east1-b_home set image deployment/c2-server c2-server=gcr.io/blinky-196302/c2-image:v$VERSION
