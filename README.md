@@ -34,9 +34,6 @@ kubectl create secret generic cloudsql-db-credentials --from-literal=username=pr
 kubectl create secret generic cloudsql-instance-credentials  --from-file=credentials.json=credentials.json
 kubectl create -f deployment.yaml
 
-
-kubectl run c2-server --image=gcr.io/blinky-196302/c2-image --port=8080
-kubectl expose deployment c2-server --type="LoadBalancer" --target-port="8080" --port="80"
 kubectl get service c2-server
 ```
 

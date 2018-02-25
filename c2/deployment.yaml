@@ -1,31 +1,6 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: postgres-proxy
-spec:
-  template:
-    metadata:
-      labels:
-        app: postgres-proxy
-    spec:
-      containers:
-        - name: cloudsql-proxy
-          image: gcr.io/cloudsql-docker/gce-proxy:1.11
-          command: ["/cloud_sql_proxy",
-                    "-instances=blinky-196302:us-east1:blinky-c2=tcp:5432",
-                    "-credential_file=/secrets/cloudsql/credentials.json"]
-          volumeMounts:
-            - name: cloudsql-instance-credentials
-              mountPath: /secrets/cloudsql
-              readOnly: true
-      volumes:
-        - name: cloudsql-instance-credentials
-          secret:
-            secretName: cloudsql-instance-credentials
----
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
   name: c2-server
 spec:
   replicas: 2
@@ -35,6 +10,15 @@ spec:
         app: c2
     spec:
       containers:
+      - name: cloudsql-proxy
+        image: gcr.io/cloudsql-docker/gce-proxy:1.11
+        command: ["/cloud_sql_proxy",
+                  "-instances=blinky-196302:us-east1:blinky-c2=tcp:5432",
+                  "-credential_file=/secrets/cloudsql/credentials.json"]
+        volumeMounts:
+          - name: cloudsql-instance-credentials
+            mountPath: /secrets/cloudsql
+            readOnly: true
       - name: c2-server
         image: cr.io/blinky-196302/c2-image
         resources:
@@ -56,6 +40,10 @@ spec:
             value: c2.settings.prod
         ports:
         - containerPort: 8080
+      volumes:
+        - name: cloudsql-instance-credentials
+          secret:
+            secretName: cloudsql-instance-credentials
 ---
 apiVersion: v1
 kind: Service
