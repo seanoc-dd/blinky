@@ -17,6 +17,7 @@ RUN pip install -r ./requirements.txt
 # Add the application source code.
 ADD c2 ./c2
 ADD pops ./pops
+ADD tests ./tests
 ADD manage.py ./manage.py
 
 # Run a WSGI server to serve the application. gunicorn must be declared as
