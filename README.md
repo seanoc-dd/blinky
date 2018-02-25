@@ -40,10 +40,11 @@ kubectl get service c2-server
 You might need to wait a few minutes but eventually you should be able to run `kubectl get service c2-server` and get a public address you can hit in a web browser to see the c2 interface.
 
 ### Deploy Updates
-```
-gcloud container builds submit --config cloudbuild.yaml .
-kubectl set image deployment/c2-server c2-server=gcr.io/blinky-196302/c2-image:latest
-```
+
+1. Increment the `v#` value on line 3 of `c2/cloudbuild.yaml`
+2. `gcloud container builds submit --config cloudbuild.yaml .`
+3. `kubectl --cluster=gke_blinky-196302_us-east1-b_home set image deployment/c2-server c2-server=gcr.io/blinky-196302/c2-image:v#` Replacing `#` with the number set in step 1
+
 
 ### Scaling
 

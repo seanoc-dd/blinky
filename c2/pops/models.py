@@ -11,9 +11,15 @@ class POP(models.Model):
     created = created = models.DateTimeField(auto_now_add=True, editable=False)
     location = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.id
+
 
 class Process(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     POP = models.ForeignKey(POP, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     last_seen = models.DateTimeField(default=datetime.datetime.now)
+
+    def __str__(self):
+        return str(self.id)
