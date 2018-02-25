@@ -57,3 +57,20 @@ You might need to wait a few minutes but eventually you should be able to run `k
 kubectl delete service c2-server
 gcloud container clusters delete home
 ```
+
+## POPs
+
+POPs are the geo-distibuted clusters from which tests are run.
+
+### Launching new POPs
+
+1. Create a new file in the deployments directory similar to the existing files, for the new zone.
+2. Go to http://blinky.seanoc.com/admin/ and add a new POP entry for the new zone.
+3. Run `./launch_new_pop --zone=$ZONE`
+
+
+### Deploying to POPs
+
+1. Increment the version number on line 3 of `pops/cloudbuild.yaml`.
+2. `gcloud container builds submit --config cloudbuild.yaml .`
+3. `./deploy.sh --version=$VERSION` where `$VERSION` is the number you set in step 1.

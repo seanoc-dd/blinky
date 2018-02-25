@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pop-process
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: pop-process
+    spec:
+      containers:
+      - name: pop-process
+        image: gcr.io/blinky-196302/pop-image
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        env:
+          - name: ZONE
+            value: us-west1-a
+          - name: LOCATION_NAME
+            value: Oregon
