@@ -25,10 +25,6 @@ SECRET_KEY = 'e@j6_67f+9l6(es@yahx0$l_u9n4#1&n4zrcq4fm63b$5v0-sc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'blinky.seanoc.com',
-]
-
 
 # Application definition
 
@@ -70,17 +66,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'c2.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 
 
 # Password validation

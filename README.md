@@ -30,6 +30,11 @@ cd c2
 gcloud container clusters create home
 gcloud container clusters get-credentials home
 gcloud container builds submit --tag gcr.io/blinky-196302/c2-image
+kubectl create secret generic cloudsql-db-credentials --from-literal=username=proxyuser --from-literal=password="$DBPASS"
+kubectl create secret generic cloudsql-instance-credentials  --from-file=credentials.json=credentials.json
+kubectl create -f deployment.yaml
+
+
 kubectl run c2-server --image=gcr.io/blinky-196302/c2-image --port=8080
 kubectl expose deployment c2-server --type="LoadBalancer" --target-port="8080" --port="80"
 kubectl get service c2-server
@@ -38,10 +43,10 @@ kubectl get service c2-server
 You might need to wait a few minutes but eventually you should be able to run `kubectl get service c2-server` and get a public address you can hit in a web browser to see the c2 interface.
 
 ### Deploy Updates
-
-`gcloud container builds submit --config cloudbuild.yaml .`
-`kubectl set image deployment/c2-server c2-server=gcr.io/blinky-196302/c2-image:latest`
-
+```
+gcloud container builds submit --config cloudbuild.yaml .
+kubectl set image deployment/c2-server c2-server=gcr.io/blinky-196302/c2-image:latest
+```
 
 ### Scaling
 
@@ -50,5 +55,7 @@ You might need to wait a few minutes but eventually you should be able to run `k
 
 ### Shutdown & Cleanup
 
-`kubectl delete service c2-server`
-`gcloud container clusters delete home`
+```
+kubectl delete service c2-server
+gcloud container clusters delete home
+```
