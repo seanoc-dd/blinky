@@ -7,7 +7,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'c2',
-        'USER': 'dev',
+        'USER': 'proxyuser',
         'PASSWORD': 'aQanADtDB&vkau6A+Wj3',
         'HOST': '35.196.84.189',
         'PORT': '5432',
