@@ -23,3 +23,7 @@ class Process(models.Model):
 
     def __str__(self):
         return '{} ({})'.format(str(self.id), self.POP)
+
+    def touch(self):
+        self.last_seen = datetime.datetime.now()
+        self.save()

@@ -22,6 +22,7 @@ from tests.views import home
 urlpatterns = [
     url(r'^$', home),
     url(r'^pops/', include('pops.urls')),
+    url(r'^tests/', include('tests.urls')),
     url(r'^admin/', admin.site.urls),
 ]
 

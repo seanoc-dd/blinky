@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+import datetime
 import uuid
 
 from django.db import models
@@ -30,11 +31,12 @@ class TestTask(models.Model):
     )
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     test_run = models.ForeignKey(TestRun)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
     POP = models.ForeignKey(POP)
     runner = models.ForeignKey(Process, null=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
     run_start = models.DateTimeField(null=True)
-    result_time = models.DurationField(null=True)
+    result_ms = models.IntegerField(null=True)
     result_status_code = models.IntegerField(null=True)
 
     def __str__(self):
