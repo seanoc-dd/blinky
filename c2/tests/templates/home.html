@@ -19,9 +19,29 @@
     <input type="submit" value="Go" />
 </form>
 <h2>Recent Runs</h2>
-<ul>
-    {% for run in test_runs %}
-        <li>{{ run }}</li>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Target</th>
+        <th>Status</th>
+        <th>Results</th>
+    </tr>
+    {% for run in runs %}
+        <td>{{ run.id }}</td>
+        <td>{{ run.target }}</td>
+        <td>
+            {% for task in run.testtask_set.all %}
+                {{ task.POP.location }} - {{ task.status }}
+                {% if not forloop.last %}<br>{% endif %}
+            {% endfor %}
+        </td>
+        <td>
+            {% for task in run.testtask_set.all %}
+                {{ task.POP.location }} - {{ task.result_status_code }} ({{ task.result_ms }}ms)
+                {% if not forloop.last %}<br>{% endif %}
+            {% endfor %}
+        </td>
+    </tr>
     {% endfor %}
 </ul>
 {% endblock %}
