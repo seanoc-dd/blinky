@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block "title" %}Blinky{% endblock %}
+
+{% block "body" %}
+<h1>Blinky</h1>
+<p>Page testing from around the world</p>
+<img src="{% static "img/blinky.gif" %}" alt="Blinky The Fish" />
+<p>
+    Currently, tests will be run from:
+    {% for pop in pops %}
+        {% if forloop.last and not forloop.first %}and {% endif %}{{ pop.location }}{% if not forloop.last %},{% endif %}
+    {% endfor %}
+</p>
+<h2>Run a Test</h2>
+<form method="POST" action=".">
+    {{ form }}
+    <input type="submit" value="Go" />
+</form>
+<h2>Recent Runs</h2>
+<ul>
+    {% for run in test_runs %}
+        <li>{{ run }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

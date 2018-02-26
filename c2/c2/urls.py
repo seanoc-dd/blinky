@@ -17,8 +17,10 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from tests.views import home
 
 urlpatterns = [
+    url(r'^$', home),
     url(r'^pops/', include('pops.urls')),
     url(r'^admin/', admin.site.urls),
 ]
