@@ -19,6 +19,9 @@ ADD c2 ./c2
 ADD pops ./pops
 ADD tests ./tests
 ADD manage.py ./manage.py
+ADD templates ./templates
+ADD static ./static
+
 
 # Run a WSGI server to serve the application. gunicorn must be declared as
 # a dependency in requirements.txt.
