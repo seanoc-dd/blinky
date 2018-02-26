@@ -5,6 +5,10 @@ Blinky is a proof of concept for a geo-distibuted synthetic testing and monitori
 
 For a detailed background on the goals of the larger synthetic testing project, checkout the [RFC](https://docs.google.com/document/d/1JCnzFIHx-3n7vhvJKSORUh0kCF8hps1aamhP3wpP1sA/edit#).
 
+## WARNING
+
+This is a **PROTOTYPE**. It should never be deployed in any production setting or used as an example for the correct way to do things.
+
 ## Prereqs
 
 This project is setup to run on GCP using kubernetes engine. Accordingly, you'll need a GCP project setup and the gcloud cli tools installed on your machine.
