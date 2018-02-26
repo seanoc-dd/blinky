@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 import datetime
 
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.http import require_POST
 
@@ -21,6 +21,7 @@ def home(request):
         if form.is_valid():
             test_run = form.save()
             test_run.schedule_tasks()
+            return HttpResponseRedirect('/')
     else:
         form = TestRunForm()
 

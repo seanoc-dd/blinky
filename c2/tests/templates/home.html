@@ -37,8 +37,10 @@
         </td>
         <td>
             {% for task in run.testtask_set.all %}
-                {{ task.POP.location }} - {{ task.result_status_code }} ({{ task.result_ms }}ms)
-                {% if not forloop.last %}<br>{% endif %}
+                {% if task.status == "finished" %}
+                    {{ task.POP.location }} - {{ task.result_status_code }} ({{ task.result_ms }}ms)
+                    {% if not forloop.last %}<br>{% endif %}
+                {% endif %}
             {% endfor %}
         </td>
     </tr>
