@@ -18,7 +18,7 @@ if __name__ == '__main__':
 
         print "Pickup response: {}".format(pickup_response.status_code)
         if pickup_response.status_code != 200:
-            time.sleep(30)
+            time.sleep(10)
             continue
 
         task = pickup_response.json()
@@ -37,4 +37,4 @@ if __name__ == '__main__':
         if drop_off_response.status_code != 200:
             print "Drop-off status: {}".format(drop_off_response.status_code)
             print "drop_off_response: {}".format(drop_off_response.text)
-            time.sleep(30)
+            time.sleep(10)

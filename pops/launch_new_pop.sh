@@ -39,3 +39,4 @@ K8S_CLUSTER_NAME="gke_blinky-196302_"$ZONE"_$CLUSTER_NAME"
 gcloud container clusters --zone=$ZONE create $CLUSTER_NAME
 gcloud container clusters --zone=$ZONE get-credentials "$CLUSTER_NAME"
 kubectl --cluster=$K8S_CLUSTER_NAME create -f deployments/$ZONE.yaml
+kubectl --cluster=$K8S_CLUSTER_NAME set image deployment/pop-process pop-process=gcr.io/blinky-196302/pop-image:$TAG
