@@ -36,6 +36,6 @@ done
 CLUSTER_NAME="pop-$ZONE"
 K8S_CLUSTER_NAME="gke_blinky-196302_"$ZONE"_$CLUSTER_NAME"
 
-#gcloud container clusters --zone=$ZONE create $CLUSTER_NAME
-#gcloud container clusters --zone=$ZONE get-credentials "$CLUSTER_NAME"
+gcloud container clusters --zone=$ZONE create $CLUSTER_NAME
+gcloud container clusters --zone=$ZONE get-credentials "$CLUSTER_NAME"
 kubectl --cluster=$K8S_CLUSTER_NAME create -f deployments/$ZONE.yaml

@@ -18,6 +18,6 @@ spec:
             memory: 100Mi
         env:
           - name: ZONE
-            value: us-west1-a
+            value:  us-east4-c
           - name: LOCATION_NAME
-            value: Oregon
+            value: Virginia

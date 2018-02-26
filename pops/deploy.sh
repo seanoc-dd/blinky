@@ -2,6 +2,7 @@
 
 POPS=(
     "us-west1-a"
+    "us-east4-c"
 )
 
 set -e
@@ -10,7 +11,7 @@ TAG="v-`git rev-parse --short HEAD`"
 
 gcloud container builds submit --tag gcr.io/blinky-196302/pop-image:$TAG
 for POP in ${POPS[@]}; do
-    echo "Updating $POP to v$VERSION"
+    echo "Updating $POP to $TAG"
     CLUSTER_NAME="pop-$POP"
     K8S_CLUSTER_NAME="gke_blinky-196302_"$POP"_$CLUSTER_NAME"
 
