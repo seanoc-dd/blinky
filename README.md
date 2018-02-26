@@ -41,10 +41,8 @@ You might need to wait a few minutes but eventually you should be able to run `k
 
 ### Deploy Updates
 
-1. Increment the `v#` value on line 3 of `c2/cloudbuild.yaml`
-2. `gcloud container builds submit --config cloudbuild.yaml .`
-3. `kubectl --cluster=gke_blinky-196302_us-east1-b_home set image deployment/c2-server c2-server=gcr.io/blinky-196302/c2-image:v#` Replacing `#` with the number set in step 1
-
+1. Commit changes to git.
+2. `./deply.sh`
 
 ### Scaling
 
@@ -71,6 +69,5 @@ POPs are the geo-distibuted clusters from which tests are run.
 
 ### Deploying to POPs
 
-1. Increment the version number on line 3 of `pops/cloudbuild.yaml`.
-2. `gcloud container builds submit --config cloudbuild.yaml .`
-3. `./deploy.sh --version=$VERSION` where `$VERSION` is the number you set in step 1.
+1. Commit changes to git.
+2. `./deply.sh`
