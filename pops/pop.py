@@ -13,6 +13,7 @@ if __name__ == '__main__':
         exit(2)
 
     process_id = r.json()['id']
+    print "Process ID:  {}".format(process_id)
     while True:
         pickup_response = requests.post('http://blinky.seanoc.com/tests/client/{}/pickup'.format(process_id))
 
