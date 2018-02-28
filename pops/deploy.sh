@@ -3,6 +3,8 @@
 POPS=(
     "us-west1-a"
     "us-east4-c"
+    "europe-west3-b"
+    "asia-south1-a"
 )
 
 set -e
